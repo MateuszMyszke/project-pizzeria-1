@@ -82,28 +82,29 @@
 
       /* find the clickable trigger (the element that should react to clicking) */
       const clickableTrigger = document.querySelectorAll(select.menuProduct.clickable);
-      //console.log(clickableTrigger);
-      for (let trigger of clickableTrigger) {
-      /* START: add event listener to clickable trigger on event click */
-          
-      trigger.addEventListener('click', function(event) {
-      /* prevent default action for event */
-      event.preventDefault();
-        console.log(trigger);
+      console.log(clickableTrigger);
       
-      /* find active product (product that has active class) */
-        const activeProduct = this.querySelector(classNames.menuProduct.wrapperActive);
-      /* if there is active product and it's not thisProduct.element, remove class active from it */
-        if (activeProduct != null && activeProduct != thisProduct.element) {
-          this.classList.remove('active'); 
-        }
-      /* toggle active class on thisProduct.element */
-      thisProduct.element.classList.toggle('active');
-    });
-  };
+      /* START: add event listener to clickable trigger on event click */
+      
+      let list = clickableTrigger.childNodes
+
+      clickableTrigger.forEach(clickableElement => {
+      
+        clickableElement.addEventListener('click', function(event) {
+          /* prevent default action for event */
+          event.preventDefault();
+          /* find active product (product that has active class) */
+          const activeProduct = document.querySelectorAll(classNames.menuProduct.wrapperActive);
+          /* if there is active product and it's not thisProduct.element, remove class active from it */
+          if (activeProduct != null && activeProduct != thisProduct.element) {
+            this.classList.remove('active'); 
+          }
+          /* toggle active class on thisProduct.element */
+          thisProduct.element.classList.toggle('active');
+        });
+      });
     }
   }
-  
   const app = {
     initMenu: function(){
       const thisApp = this;
