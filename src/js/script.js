@@ -61,6 +61,9 @@
 
       thisProduct.renderInMenu();
       thisProduct.initAccordion();
+      thisProduct.getElements();
+      thisProduct.initOrderForm();
+      thisProduct.processOrder();
       //console.log('new Product:', thisProduct);
     }
 
@@ -75,6 +78,16 @@
       const menuContainer = document.querySelector(select.containerOf.menu);
       /* add element to menu */
       menuContainer.appendChild(thisProduct.element);
+    }
+
+    getElements(){
+      const thisProduct = this;
+    
+      thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
     }
 
     initAccordion(){
@@ -94,16 +107,41 @@
           /* if there is active product and it's not thisProduct.element, remove class active from it */
           activeProducts.forEach(activeProduct => {
             if (activeProduct != null && activeProduct != thisProduct.element) {
-            activeProduct.classList.remove('active'); 
+              activeProduct.classList.remove('active'); 
             }
           });
-          console.log(activeProducts);
           /* toggle active class on thisProduct.element */
           thisProduct.element.classList.toggle('active');
         });
       });
-    };
+    }
+  
+
+  initOrderForm() {
+    const thisProduct = this;
+    thisProduct.form.addEventListener('submit', function(event){
+      event.preventDefault();
+      thisProduct.processOrder();
+    });
+    
+    for(let input of thisProduct.formInputs){
+      input.addEventListener('change', function(){
+        thisProduct.processOrder();
+      });
+    }
+    
+    thisProduct.cartButton.addEventListener('click', function(event){
+      event.preventDefault();
+      thisProduct.processOrder();
+    });
   }
+
+  processOrder() {
+    const thisProduct = this;
+
+
+  }
+}
   const app = {
     initMenu: function(){
       const thisApp = this;
