@@ -156,22 +156,21 @@
             // check if the option is not default
             if(!option.default == true) {
               // add option price to price variable
-              price = price + option.price
+              price = price + option.price;
             }
-          // check if there is no param with a name of paramId in formData and if it includes optionId
-          } else if(formData[paramId] && !formData[paramId].includes(optionId)) {
-              // check if the option is default
-              if(option.default == true) {
-                // add option price to price variable
-                price = price - option.price
-              }
+          } else {
+            // check if the option is default
+            if (option.default == true) {
+              // add option price to price variable
+              price = price - option.price;
+            }
           }
+        }    
       }
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
     }
   }
-}
   const app = {
     initMenu: function(){
       const thisApp = this;
