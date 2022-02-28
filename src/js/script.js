@@ -88,6 +88,7 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
 
     initAccordion(){
@@ -146,27 +147,40 @@
         // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
         const param = thisProduct.data.params[paramId];
         //console.log(paramId, param);
-
         // for every option in this category
         for(let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
+          // variable for option selected based on option selected above
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
           // check if there is param with a name of paramId in formData and if it includes optionId
-          if(formData[paramId] && formData[paramId].includes(optionId)) {
+          if( optionSelected) {
             // check if the option is not default
             if(!option.default == true) {
               // add option price to price variable
               price = price + option.price;
             }
-          } else {
+          } 
+          else {
             // check if the option is default
             if (option.default == true) {
               // add option price to price variable
               price = price - option.price;
             }
           }
+          // define image selector
+          const imageOption = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+          
+          // check if there is image for option and is it selected
+          if (imageOption && optionSelected) {
+            imageOption.classList.add(classNames.menuProduct.imageVisible);
+            // check if there is option for image and if is NOT selected
+          } else if (imageOption && !optionSelected) {
+            imageOption.classList.remove(classNames.menuProduct.imageVisible);
+          }
         }    
       }
+    
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
     }
