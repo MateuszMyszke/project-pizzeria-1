@@ -217,26 +217,28 @@
     }
     setValue(value){
       const thisWidget = this;
-
+      
       const newValue = parseInt(value);
+      
+      thisWidget.value = newValue;
+      thisWidget.input.value = newValue;
 
       /* TODO: ADD Validation */
-
-      thisWidget.value = newValue;
-      thisWidget.input.value = thisWidget.value;
-
-      if(thisWidget.value !== newValue && !isNaN(newValue)) {
-        thisWidget.value == newValue;
-      } else if (isNaN(newValue)) {
-        thisWidget.value == newValue;
-      }
       
+      if(thisWidget.value !== newValue && !isNaN(newValue)) {
+        thisWidget.value = newValue;
+
+      } else {
+        thisWidget.input.value = thisWidget.value;
+
+      }
     }
 
     initActions(){
       const thisWidget = this;
       thisWidget.input.addEventListener('change', function(){
-        thisWidget.setValue(thisWidget.input.value);
+        thisWidget.setValue(thisWidget.value);
+
       });
       thisWidget.linkDecrease.addEventListener('click', function(element){
         element.preventDefault();
