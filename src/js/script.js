@@ -252,6 +252,7 @@
       
       
       thisWidget.input.addEventListener('change', function(){
+        thisWidget.setValue(thisWidget.value);
         thisWidget.setValue(thisWidget.input.value);
       });
       thisWidget.linkDecrease.addEventListener('click', function(element){
