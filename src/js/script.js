@@ -223,15 +223,22 @@
       thisWidget.value = newValue;
       thisWidget.input.value = newValue;
 
+      
+
       /* TODO: ADD Validation */
       
-      if(thisWidget.value !== newValue && !isNaN(newValue)) {
+      if(thisWidget.value !== newValue && !isNaN(newValue) ) {
         thisWidget.value = newValue;
-
       } else {
         thisWidget.input.value = thisWidget.value;
-
       }
+
+      if (thisWidget.input.value > settings.amountWidget.defaultMax){
+        thisWidget.value = settings.amountWidget.defaultMax;
+      } else if (newValue < settings.amountWidget.defaultMin) {
+        thisWidget.value = settings.amountWidget.defaultMin;
+      }
+
     }
 
     initActions(){
