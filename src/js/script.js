@@ -331,8 +331,7 @@
 
       thisCart.dom.toggleTrigger.addEventListener('click', function(event){
         event.preventDefault();
-        const activeTrigger = thisCart.dom.wrapper;
-        activeTrigger.classList.toggle(classNames.cart.wrapperActive);
+        thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
     }
   }
