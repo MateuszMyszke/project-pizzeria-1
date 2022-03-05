@@ -271,7 +271,7 @@
         params[paramId] = {
           label: param.label,
           options: {}
-        }
+        };
     
         // for every option in this category
         for(let optionId in param.options) {
@@ -279,10 +279,9 @@
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
     
           if(optionSelected) {
+            console.log(option);
+            params[paramId].options[optionId] = option.label;
             
-            params[paramId].options = {
-              id: option.label
-            };
           }
         }
       }
