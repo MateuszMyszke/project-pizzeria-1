@@ -339,12 +339,14 @@
     initActions(){
       const thisWidget = this;
       
-      thisWidget.input.addEventListener('change', function(){
+      thisWidget.input.addEventListener('change', function(event){
+        event.preventDefault();
         thisWidget.setValue(thisWidget.value);
       });
       thisWidget.linkDecrease.addEventListener('click', function(element){
         element.preventDefault();
         thisWidget.setValue(thisWidget.value - 1);
+
       });
       thisWidget.linkIncrease.addEventListener('click', function(element){
         element.preventDefault();
@@ -400,11 +402,11 @@
 
       thisCart.dom.productList.addEventListener('updated', function(){
         thisCart.update();
-      })
+      });
 
-      thisCart.dom.productList.addEventListener('remove', function(){
+      thisCart.dom.productList.addEventListener('remove', function(event){
         thisCart.remove(event.detail.cartProduct);
-      })
+      });
     }
 
     add(menuProduct){
@@ -423,7 +425,7 @@
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
       //console.log('thisCart.products', thisCart.products);
       console.log(thisCart.products);
-      console.log(thisCart.dom.totalPrice);
+      //console.log(thisCart.dom.totalPrice);
 
       thisCart.update();
 
@@ -433,7 +435,7 @@
       const thisCart = this;
 
       let deliveryFee = settings.cart.defaultDeliveryFee;
-      console.log(deliveryFee);
+      //console.log(deliveryFee);
       let totalNumber = 0;
       let subtotalPrice = 0;
 
@@ -442,7 +444,7 @@
         subtotalPrice += product.price;
         
       }
-      console.log(totalNumber);
+      //console.log(totalNumber);
 
       if(totalNumber <= 0){
         deliveryFee = 0;
@@ -461,9 +463,20 @@
         domElement.innerHTML = thisCart.totalPrice;
       });
     }
+    /* WIP - remove product */
+    remove(instance){
+      const thisCart = this;
 
-    remove(){
+      const productsList = thisCart.products;
       
+      thisCart.products.splice(instance);
+      thisCart.dom.productList.remove(instance);
+      thisCart.update();
+      
+      //console.log(productList);
+
+
+
     }
   }
 
