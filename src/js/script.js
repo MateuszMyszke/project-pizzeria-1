@@ -231,7 +231,7 @@
       }
       
       // update calculated price in the HTML
-      price *= thisProduct.amountWidget.value;
+      price * thisProduct.amountWidget.value;
       thisProduct.priceSingle = price;
       thisProduct.priceElem.innerHTML = price;
     }
@@ -355,7 +355,9 @@
     announce(){
       const thisWidget = this;
 
-      const event = new Event('updated');
+      const event = new CustomEvent('updated', {
+        bubbles: true
+      });
       thisWidget.element.dispatchEvent(event);
     }
   }
@@ -384,7 +386,7 @@
 
       thisCart.dom.deliveryFee = element.querySelector(select.cart.deliveryFee);
       thisCart.dom.subtotalPrice = element.querySelector(select.cart.subtotalPrice);
-      thisCart.dom.totalPrice = element.querySelector(select.cart.totalPrice);
+      thisCart.dom.totalPrice = element.querySelectorAll(select.cart.totalPrice);
       thisCart.dom.totalNumber = element.querySelector(select.cart.totalNumber);
     }
 
@@ -395,6 +397,14 @@
         event.preventDefault();
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
+
+      thisCart.dom.productList.addEventListener('updated', function(){
+        thisCart.update();
+      })
+
+      thisCart.dom.productList.addEventListener('remove', function(){
+        thisCart.remove(event.detail.cartProduct);
+      })
     }
 
     add(menuProduct){
@@ -422,7 +432,7 @@
     update(){
       const thisCart = this;
 
-      const deliveryFee = settings.cart.defaultDeliveryFee;
+      let deliveryFee = settings.cart.defaultDeliveryFee;
       console.log(deliveryFee);
       let totalNumber = 0;
       let subtotalPrice = 0;
@@ -430,13 +440,30 @@
       for(let product of thisCart.products){
         totalNumber += product.amount;
         subtotalPrice += product.price;
+        
       }
       console.log(totalNumber);
 
-      thisCart.dom.totalPrice.innerHTML = subtotalPrice + deliveryFee;
+      if(totalNumber <= 0){
+        deliveryFee = 0;
+      }
+      thisCart.totalPrice = deliveryFee + subtotalPrice;
+
       thisCart.dom.totalNumber.innerHTML = totalNumber;
       thisCart.dom.deliveryFee.innerHTML = deliveryFee;
       thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
+
+      
+      //thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
+      //console.log(thisCart.totalPrice)
+
+      thisCart.dom.totalPrice.forEach((domElement) => {
+        domElement.innerHTML = thisCart.totalPrice;
+      });
+    }
+
+    remove(){
+      
     }
   }
 
@@ -452,6 +479,7 @@
 
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
+      thisCartProduct.initActions();
       //console.log('thisCartProduct', thisCartProduct);
     }
 
@@ -479,6 +507,35 @@
         thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
         //console.log(thisCartProduct.dom.price);
       });
+    }
+
+    remove(){
+      const thisCartProduct = this;
+
+      const event = new CustomEvent('remove', {
+        bubbles: true,
+        detail: {
+          cartProduct: thisCartProduct,
+        },
+      });
+
+      thisCartProduct.dom.wrapper.dispatchEvent(event);
+
+    }
+
+    initActions(){
+      const thisCartProduct = this;
+
+      thisCartProduct.dom.edit.addEventListener('click', function(event){
+        event.preventDefault();
+      });
+
+      thisCartProduct.dom.remove.addEventListener('click', function(event){
+        event.preventDefault();
+        thisCartProduct.remove();
+      });
+
+
     }
 
   } 
