@@ -368,7 +368,7 @@
 
       thisCart.getElements(element);
       thisCart.initActions();
-      thisCart.update();
+      
 
       //console.log('new Cart', thisCart);
     }
@@ -386,7 +386,6 @@
       thisCart.dom.subtotalPrice = element.querySelector(select.cart.subtotalPrice);
       thisCart.dom.totalPrice = element.querySelector(select.cart.totalPrice);
       thisCart.dom.totalNumber = element.querySelector(select.cart.totalNumber);
-
     }
 
     initActions(){
@@ -413,7 +412,9 @@
 
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
       //console.log('thisCart.products', thisCart.products);
-      console.log(thisCart.products)
+      console.log(thisCart.products);
+      console.log(thisCart.dom.totalPrice);
+
       thisCart.update();
 
     }
@@ -427,7 +428,7 @@
       let subtotalPrice = 0;
 
       for(let product of thisCart.products){
-        totalNumber += product.price;
+        totalNumber += product.amount;
         subtotalPrice += product.price;
       }
       console.log(totalNumber);
