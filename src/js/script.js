@@ -231,8 +231,8 @@
       }
       
       // update calculated price in the HTML
-      price * thisProduct.amountWidget.value;
-      thisProduct.priceSingle = price;
+      //thisProduct.priceSingle = price;
+      //price = price * thisProduct.amountWidget.value;
       thisProduct.priceElem.innerHTML = price;
     }
 
@@ -295,9 +295,9 @@
       const thisWidget = this;
       thisWidget.getElements(element);
 
-      thisWidget.setValue(settings.amountWidget.defaultValue);
+      thisWidget.setValue(thisWidget.input.value || settings.amountWidget.defaultValue);
       thisWidget.initActions();
-
+      
       //console.log('AmountWidget:', thisWidget);
       //console.log('constructor arguments:', element);
     }
@@ -313,7 +313,7 @@
       const thisWidget = this;
       const newValue = parseInt(value);
 
-      thisWidget.value = newValue;
+      //thisWidget.value = newValue;
       thisWidget.input.value = newValue;
 
       /* ADD Validation */
@@ -345,12 +345,13 @@
       });
       thisWidget.linkDecrease.addEventListener('click', function(element){
         element.preventDefault();
-        thisWidget.setValue(thisWidget.value - 1);
+        thisWidget.setValue(thisWidget.value -= 1);
 
       });
       thisWidget.linkIncrease.addEventListener('click', function(element){
         element.preventDefault();
-        thisWidget.setValue(thisWidget.value + 1);
+        thisWidget.setValue(thisWidget.value += 1);
+        
       });
     }
 
@@ -492,8 +493,9 @@
       thisCartProduct.priceSingle = menuProduct.priceSingle;
 
       thisCartProduct.getElements(element);
-      thisCartProduct.initAmountWidget();
       thisCartProduct.initActions();
+      thisCartProduct.initAmountWidget();
+
       //console.log('thisCartProduct', thisCartProduct);
     }
 
@@ -516,8 +518,8 @@
       thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidgetElem);
 
       thisCartProduct.dom.amountWidgetElem.addEventListener('updated', function(){
-        thisCartProduct.amount = thisCartProduct.amountWidget;
-        thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount.value;
+        thisCartProduct.amount = thisCartProduct.amountWidget.value;
+        thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
         thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
         //console.log(thisCartProduct.dom.price);
       });
