@@ -467,20 +467,17 @@
     remove(instance){
       const thisCart = this;
 
+
       const list = thisCart.products;
-      
+      /* check order in array */
       const productIndex = list.indexOf(instance);
-      
-      
+
+      /* remove correct item from array */
       list.splice(productIndex, 1);
-      
+           
       
       thisCart.update();
-      
-      console.log(productIndex);
-      console.log(list)
-
-
+            
     }
   }
 
@@ -537,7 +534,7 @@
       });
 
       thisCartProduct.dom.wrapper.dispatchEvent(event);
-
+      thisCartProduct.dom.wrapper.remove();
     }
 
     initActions(){
