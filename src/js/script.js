@@ -467,14 +467,18 @@
     remove(instance){
       const thisCart = this;
 
-      const productsList = thisCart.products;
+      const list = thisCart.products;
       
-      thisCart.products.splice(instance);
-      thisCart.dom.productList.remove(instance);
+      const productIndex = list.indexOf(instance);
+      
+      
+      list.splice(productIndex, 1);
+      
+      
       thisCart.update();
       
-      //console.log(productList);
-
+      console.log(productIndex);
+      console.log(list)
 
 
     }
