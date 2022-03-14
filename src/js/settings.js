@@ -38,11 +38,12 @@ export const select = {
       input: 'input[type="range"]',
       output: '.output',
     },
-    booking: {
-      peopleAmount: '.people-amount',
-      hoursAmount: '.hours-amount',
-      tables: '.floor-plan .table',
-    },
+    
+  },
+  booking: {
+    peopleAmount: '.people-amount',
+    hoursAmount: '.hours-amount',
+    tables: '.floor-plan .table',
   },
   nav: {
     links: '.main-nav a',
