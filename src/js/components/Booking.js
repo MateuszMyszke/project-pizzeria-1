@@ -47,7 +47,7 @@ class Booking {
     thisBooking.hoursAmountElem = new AmountWidget(thisBooking.dom.hoursAmount);
 
 
-    console.log('EASY :D')
+    console.log('EASY :D');
   }
 }
 
