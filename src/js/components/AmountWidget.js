@@ -13,7 +13,7 @@ class AmountWidget extends BaseWidget{
     
     //console.log('AmountWidget:', thisWidget);
     //console.log('constructor arguments:', element);
-    //thisWidget.defaultValue = settings.amountWidget.defaultValue;
+    thisWidget.value = settings.amountWidget.defaultValue;
   }
   getElements(){
     const thisWidget = this;
@@ -24,7 +24,7 @@ class AmountWidget extends BaseWidget{
   }
   
   isValid(value){
-    
+
     return !isNaN(value)
     && value >= settings.amountWidget.defaultMin 
     && value <= settings.amountWidget.defaultMax;

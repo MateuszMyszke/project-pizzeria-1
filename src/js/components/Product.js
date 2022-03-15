@@ -167,7 +167,7 @@ class Product{
 
 
     thisProduct.name = thisProduct.data.name;
-    thisProduct.amount = thisProduct.amountWidget.defavalue;
+    thisProduct.amount = thisProduct.amountWidget.value;
     //thisProduct.priceSingle = thisProduct.priceSingle;
     thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
     thisProduct.params = thisProduct.prepareCartProductParams();
@@ -186,7 +186,7 @@ class Product{
   prepareCartProduct(){
     const thisProduct = this;
     thisProduct.name = thisProduct.data.name;
-    thisProduct.amount = thisProduct.amountWidget.value;
+    thisProduct.amount = thisProduct.amountWidget.defaultValue;
     const productSummary = {
 
       id: thisProduct.id,
