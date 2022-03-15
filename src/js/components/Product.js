@@ -3,8 +3,11 @@ import utils from '../utils.js';
 import AmountWidget from './AmountWidget.js';
 
 
+
 class Product{
   constructor(id, data){
+    
+
     const thisProduct = this;
 
     thisProduct.id = id;
@@ -13,8 +16,10 @@ class Product{
     thisProduct.renderInMenu();
     thisProduct.getElements();
     thisProduct.initAccordion();
+
     thisProduct.initOrderForm();
     thisProduct.initAmountWidget();
+
     thisProduct.processOrder();
     //console.log('new Product:', thisProduct);
   }
@@ -149,6 +154,9 @@ class Product{
     }
     
     // update calculated price in the HTML
+
+    
+
     thisProduct.priceSingle = price;
     price = price * thisProduct.amountWidget.value;
     thisProduct.priceElem.innerHTML = price;
@@ -159,7 +167,7 @@ class Product{
 
 
     thisProduct.name = thisProduct.data.name;
-    thisProduct.amount = thisProduct.amountWidget.value;
+    thisProduct.amount = thisProduct.amountWidget.defavalue;
     //thisProduct.priceSingle = thisProduct.priceSingle;
     thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
     thisProduct.params = thisProduct.prepareCartProductParams();

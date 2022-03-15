@@ -3,7 +3,7 @@ import BaseWidget from './BaseWidget.js';
 
 class AmountWidget extends BaseWidget{
   constructor(element){
-    super(element, settings.amountWidget.defaultValue );
+    super(element, settings.amountWidget.defaultValue);
 
     const thisWidget = this;
 
@@ -13,6 +13,7 @@ class AmountWidget extends BaseWidget{
     
     //console.log('AmountWidget:', thisWidget);
     //console.log('constructor arguments:', element);
+    //thisWidget.defaultValue = settings.amountWidget.defaultValue;
   }
   getElements(){
     const thisWidget = this;
@@ -23,6 +24,7 @@ class AmountWidget extends BaseWidget{
   }
   
   isValid(value){
+    
     return !isNaN(value)
     && value >= settings.amountWidget.defaultMin 
     && value <= settings.amountWidget.defaultMax;
