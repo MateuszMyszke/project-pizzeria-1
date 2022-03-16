@@ -10,10 +10,10 @@ class AmountWidget extends BaseWidget{
     thisWidget.getElements(element);
 
     thisWidget.initActions();
-    
+
+    thisWidget.setValue(thisWidget.dom.input.value);    
     //console.log('AmountWidget:', thisWidget);
-    //console.log('constructor arguments:', element);
-    thisWidget.value = settings.amountWidget.defaultValue;
+    console.log('constructor arguments:', element);
   }
   getElements(){
     const thisWidget = this;
@@ -24,7 +24,6 @@ class AmountWidget extends BaseWidget{
   }
   
   isValid(value){
-
     return !isNaN(value)
     && value >= settings.amountWidget.defaultMin 
     && value <= settings.amountWidget.defaultMax;
