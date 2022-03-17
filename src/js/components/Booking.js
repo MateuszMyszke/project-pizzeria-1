@@ -106,7 +106,7 @@ class Booking {
         ]);
       }) 
       .then(function([bookings, eventsCurrent, eventsRepeat ]){
-        //console.log(bookings);
+        console.log(bookings);
         //console.log(eventsCurrent);
         //console.log(eventsRepeat);
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
@@ -144,7 +144,7 @@ class Booking {
 
     thisBooking.updateDOM();
 
-    //console.log('thisBooking.booked', thisBooking.booked);
+    console.log('thisBooking.booked', thisBooking.booked);
 
   }
 
@@ -214,7 +214,7 @@ class Booking {
       if(
         !allAvailable
         &&
-        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) > -1
+        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId) >= 1
       ){
         table.classList.add(classNames.booking.tableBooked);
       } else {
