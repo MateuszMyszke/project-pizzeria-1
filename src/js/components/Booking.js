@@ -270,8 +270,6 @@ class Booking {
       const clickedElement = event.target;
       const table = clickedElement.getAttribute(settings.booking.tableIdAttribute);
       let tableId = '';
-      //console.log(table);
-      //thisBooking.tableId = tableId;
       if(table != null){
         
         if(!clickedElement.classList.contains(classNames.booking.tableBooked)){
@@ -330,6 +328,7 @@ class Booking {
     
     fetch(url, options);
     thisBooking.updateDOM();
+    console.log(thisBooking.booked);
   }
   
 }
