@@ -1,6 +1,7 @@
 import {select, templates} from '../settings.js';
 import utils from '../utils.js';
 
+
 class HomePage {
   constructor(element){
     const thisHome = this;
@@ -26,6 +27,8 @@ class HomePage {
 
     thisHome.dom = {};
     thisHome.dom.wrapper = element;
+
+  
   }
 }
 

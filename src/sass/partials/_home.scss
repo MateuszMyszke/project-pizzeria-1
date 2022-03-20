@@ -5,3 +5,26 @@
   border-bottom: 1px solid lighten($color-dark, 70%);
   border-radius: $radius;
 }
+
+.home-links {
+  display: inline-block;
+}
+
+.home-order {
+  background: $color-danger;
+  width: 45%;
+  margin: 10;
+
+}
+
+.home-table {
+  background: $color-danger;
+  width: 45%;
+  margin: 10px;
+
+}
+
+.home-opening {
+  background: $color-danger;
+  width: 600px;
+}
