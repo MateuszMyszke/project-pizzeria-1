@@ -6,8 +6,8 @@ class HomePage {
   constructor(element){
     const thisHome = this;
 
-    
     thisHome.render(element);
+    thisHome.initCarousel();
   }
 
 
@@ -27,8 +27,16 @@ class HomePage {
 
     thisHome.dom = {};
     thisHome.dom.wrapper = element;
+    thisHome.dom.carousel = element.querySelector(select.containerOf.carousel);
 
   
+  }
+
+  initCarousel(){
+    const flkty = new Flickity( '.main-carousel', {
+      cellAlign: 'left',
+      contain: true
+    });
   }
 }
 
