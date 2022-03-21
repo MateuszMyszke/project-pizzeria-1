@@ -284,13 +284,13 @@
   }
 
   .carousel-cell {
-    width: 100vh;
+    width: 80vh;
   }
 
   .gallery-image {
     img {
-      height: 100vh;
-      width: 100vh;
+      height: 90vh;
+      width: 90vh;
     }
   }
   
@@ -304,8 +304,8 @@
   }
   
   .gallery-image:hover::after {
-    height: 100vh;
-    width: 100vh;
+    height: 90vh;
+    width: 90vh;
   }  
   
 }
