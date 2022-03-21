@@ -289,8 +289,8 @@
 
   .gallery-image {
     img {
-      height: 90vh;
-      width: 90vh;
+      height: auto;
+      width: 500px;
     }
   }
   
@@ -304,8 +304,8 @@
   }
   
   .gallery-image:hover::after {
-    height: 90vh;
-    width: 90vh;
+    height: auto;
+    width: 500;
   }  
   
 }
