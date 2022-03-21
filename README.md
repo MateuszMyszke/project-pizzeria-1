@@ -3,7 +3,7 @@ DEMO of webpage can be found:
 https://pizzeria-sbj.herokuapp.com/
 (free hosting so might take a while to load for first time)
 
-Page created as apractice of:
+Page created as a practice of:
 
 JS
 HTML
